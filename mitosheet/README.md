@@ -18,7 +18,7 @@ As there are mulitple platforms to develop on, we highly reccomend developing on
 
 We have a setup script for Mac. Just run
 ```
-bash devsetup/macsetup.sh
+bash dev/macsetup.sh
 ```
 
 Then, in a seperate terminal, run
