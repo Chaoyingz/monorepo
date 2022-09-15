@@ -600,6 +600,30 @@ export const createActions = (
             searchTerms: ['import', 'upload', 'new', 'excel', 'csv', 'add'],
             tooltip: "Import any .csv or well-formatted .xlsx file as a new sheet."
         },
+        [ActionEnum.Query]: {
+            type: ActionEnum.Query,
+            shortTitle: 'Query',
+            longTitle: 'Query database',
+            actionFunction: () => {
+                // We turn off editing mode, if it is on
+                setEditorState(undefined);
+
+                // we close the editing taskpane if its open
+                closeOpenEditingPopups();
+
+                setUIState(prevUIState => {
+                    return {
+                        ...prevUIState,
+                        currOpenModal: {type: ModalEnum.None},
+                        currOpenTaskpane: {type: TaskpaneType.QUERY},
+                        selectedTabType: 'data'
+                    }
+                })
+            },
+            isDisabled: () => {return undefined},
+            searchTerms: ['query', 'database'],
+            tooltip: "Query data based on the conditions you give."
+        },
         [ActionEnum.Merge]: {
             type: ActionEnum.Merge,
             shortTitle: 'Merge',

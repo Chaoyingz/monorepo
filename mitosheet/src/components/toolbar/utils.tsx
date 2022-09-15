@@ -19,6 +19,7 @@ import DropdownItem from '../elements/DropdownItem';
 import { Action } from '../../types';
 import MoreIcon from '../icons/MoreIcon';
 import LessIcon from '../icons/LessIcon';
+import QueryIcon from "../icons/QueryIcon";
 
 /* 
     Each toolbar button icon has both a light and dark option. 
@@ -40,6 +41,8 @@ export enum ToolbarButtonType {
     UNDO = 'UNDO',
     REDO = 'REDO',
     CLEAR = 'CLEAR',
+
+    QUERY = 'QUERY',
 
     IMPORT = "IMPORT",
     EXPORT = "EXPORT",
@@ -69,6 +72,8 @@ export const getToolbarItemIcon = (toolbarButtonType: ToolbarButtonType): JSX.El
         case ToolbarButtonType.UNDO: {return <UndoIcon />}
         case ToolbarButtonType.REDO: {return <RedoIcon />}
         case ToolbarButtonType.CLEAR: {return <ClearIcon />}
+
+        case ToolbarButtonType.QUERY: {return <QueryIcon />}
 
         case ToolbarButtonType.IMPORT: {return <ImportIcon />}
         case ToolbarButtonType.EXPORT: {return <ExportIcon />}

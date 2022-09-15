@@ -121,7 +121,6 @@ def handle_api_event(
     params = event['params']
     start_time = perf_counter()
     failed = False
-
     try:
         if event["type"] == "get_path_contents":
             result = get_path_contents(params)

@@ -27,6 +27,7 @@ export enum TaskpaneType {
     DOWNLOAD = 'download',
     DROP_DUPLICATES = 'drop_duplicates',
     GRAPH = 'graph',
+    QUERY = 'query',
     IMPORT = 'import',
     MERGE = 'merge',
     CONCAT = 'concat',
@@ -51,7 +52,8 @@ export type TaskpaneInfo =
         type: TaskpaneType.GRAPH,
         graphID: GraphID,
         graphSidebarTab?: GraphSidebarTab
-    }    
+    }
+    | {type: TaskpaneType.QUERY}
     | {type: TaskpaneType.IMPORT}
     | {type: TaskpaneType.MERGE}
     | {type: TaskpaneType.CONCAT}

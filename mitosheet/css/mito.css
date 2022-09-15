@@ -100,3 +100,7 @@
     background: var(--mito-very-light-gray);
     box-sizing: border-box;
 }
+
+.block {
+    display: block;
+}

@@ -22,6 +22,7 @@ export enum StepType {
     DataframeDuplicate = 'dataframe_duplicate',
     DataframeRename = 'dataframe_rename',
     SimpleImport = 'simple_import',
+    Query = 'query',
     Sort = 'sort',
     Pivot = 'pivot',
     Merge = 'merge',
@@ -738,6 +739,7 @@ export enum ActionEnum {
     Graph = 'graph',
     Help = 'help',
     Import = 'import',
+    Query = 'query',
     Merge = 'merge',
     Concat_Dataframes = 'concat_dataframes', // Note the unfortunate overlap with concat
     Pivot = 'pivot',

@@ -142,6 +142,14 @@ const Toolbar = (
                     <div className="toolbar-vertical-line"/>
 
                     <ToolbarButton
+                        toolbarButtonType={ToolbarButtonType.QUERY}
+                        action={props.actions[ActionEnum.Query]}
+                        setEditorState={props.setEditorState}
+                    />
+
+                    <div className="toolbar-vertical-line"/>
+
+                    <ToolbarButton
                         toolbarButtonType={ToolbarButtonType.IMPORT}
                         action={props.actions[ActionEnum.Import]}
                         setEditorState={props.setEditorState}

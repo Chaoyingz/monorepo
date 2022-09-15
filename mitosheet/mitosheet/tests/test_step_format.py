@@ -264,7 +264,7 @@ def test_params_static():
         'one_hot_encoding'
     )
 
-    assert len(STEP_PERFORMERS) == 31
+    assert len(STEP_PERFORMERS) == 32
 
 
 def get_fake_param(param_name):

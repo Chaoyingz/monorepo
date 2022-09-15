@@ -52,6 +52,9 @@ const getDisplayMessageForMessageType = (messageType: StepType | UpdateType): st
         case StepType.DataframeRename: {
             return 'Renaming a dataframe'
         }
+        case StepType.Query: {
+            return 'Querying data'
+        }
         case StepType.SimpleImport: {
             return 'Importing a CSV'
         }
@@ -157,16 +160,16 @@ const getDisplayMessageForMessageType = (messageType: StepType | UpdateType): st
 const getMessageType = (messageType: string): StepType | UpdateType | undefined => {
     if (isEditEvent(messageType)) {
         return messageType.substring(0, messageType.length - "_edit".length) as StepType;
-    } else if  (isUpdateEvent(messageType)) {
+    } else if (isUpdateEvent(messageType)) {
         return messageType as UpdateType;
     }
-    
+
     return undefined;
 }
 
-const getMessageTypesToDisplay  = (loading: [string, string | undefined, string][]): [(StepType | UpdateType), string][] => {
+const getMessageTypesToDisplay = (loading: [string, string | undefined, string][]): [(StepType | UpdateType), string][] => {
     const seenStepIds: string[] = []
-    return loading.filter((([, step_id, ]) => {
+    return loading.filter((([, step_id,]) => {
         // We filter out any edits that have duplicated step ids, as users think of 
         // these as just a single edit. We only take the first one!
         if (step_id !== undefined) {
@@ -179,7 +182,7 @@ const getMessageTypesToDisplay  = (loading: [string, string | undefined, string]
 
     })).map((([message_id, , type]) => {
         return [getMessageType(type), message_id];
-    })).filter(([messageType, ]) => {
+    })).filter(([messageType,]) => {
         return messageType !== undefined;
     }) as [(StepType | UpdateType), string][];
 }
@@ -208,7 +211,7 @@ const getSlowLoadingMessage = (currentLoadingMessage: [number, string] | undefin
     }
 
     return undefined;
-} 
+}
 
 
 
@@ -219,7 +222,7 @@ const getSlowLoadingMessage = (currentLoadingMessage: [number, string] | undefin
     By default, does not displaying anything for the first .5 seconds it
     is rendered, so that only long running ops actually display anything.
 */
-const LoadingIndicator = (props: {loading: [string, string | undefined, string][]}): JSX.Element => {
+const LoadingIndicator = (props: { loading: [string, string | undefined, string][] }): JSX.Element => {
 
     // We store the message at the top of the loading queue, so that we can 
     // track if it has been running for longer than 10 seconds
@@ -249,14 +252,14 @@ const LoadingIndicator = (props: {loading: [string, string | undefined, string][
                 return [prevCurrentLoadingMessage[0], prevCurrentLoadingMessage[1]];
             })
         }, 1000)
-        return () => {clearInterval(interval)};
+        return () => { clearInterval(interval) };
     }, [props.loading])
 
 
     const messagesToDisplay = getMessageTypesToDisplay(props.loading);
 
     if (messagesToDisplay.length === 0) {
-        return <React.Fragment/>
+        return <React.Fragment />
     }
 
     return (
@@ -268,13 +271,13 @@ const LoadingIndicator = (props: {loading: [string, string | undefined, string][
                 {messagesToDisplay.map((([messageType, message_id], index) => {
                     const slowLoadingMessage = getSlowLoadingMessage(currentLoadingMessage, message_id);
 
-                    return (messageType !== undefined && 
-                        <div className={classNames('mb-5px', 'mt-5px', {'text-color-medium-gray-important': index !== 0})}>
-                            <div 
-                                key={index} 
+                    return (messageType !== undefined &&
+                        <div className={classNames('mb-5px', 'mt-5px', { 'text-color-medium-gray-important': index !== 0 })}>
+                            <div
+                                key={index}
                                 className={classNames('loading-indicator-item')}
                             >
-                                <div className='loading-indicator-icon' style={{opacity: index !== 0 ? '50%' : undefined}}>
+                                <div className='loading-indicator-icon' style={{ opacity: index !== 0 ? '50%' : undefined }}>
                                     {getIcon(messageType, '15', '15')}
                                 </div>
                                 <div className='ml-5px'>
@@ -287,13 +290,13 @@ const LoadingIndicator = (props: {loading: [string, string | undefined, string][
                                         </div>
                                     }
                                 </div>
-                                
+
                                 <div className='loading-indicator-loader'>
-                                    {index === 0 && <LoadingCircle/>}
-                                    {index !== 0 && <NonLoadingCircle/>}
+                                    {index === 0 && <LoadingCircle />}
+                                    {index !== 0 && <NonLoadingCircle />}
                                 </div>
                             </div>
-                        </div>    
+                        </div>
                     )
                 }))}
             </div>

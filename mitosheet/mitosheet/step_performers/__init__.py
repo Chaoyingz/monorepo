@@ -12,6 +12,7 @@ from typing import Dict, List, Type
 from mitosheet.step_performers.concat import ConcatStepPerformer
 from mitosheet.step_performers.drop_duplicates import DropDuplicatesStepPerformer
 from mitosheet.step_performers.import_steps.excel_import import ExcelImportStepPerformer
+from mitosheet.step_performers.query import QueryStepPerformer
 from mitosheet.step_performers.step_performer import StepPerformer
 from mitosheet.step_performers.pivot import PivotStepPerformer
 from mitosheet.step_performers.filter import FilterStepPerformer
@@ -59,6 +60,7 @@ STEP_PERFORMERS: List[Type[StepPerformer]] = [
     FillNaStepPerformer,
     DeleteColumnStepPerformer,
     RenameColumnStepPerformer,
+    QueryStepPerformer,
     SimpleImportStepPerformer,
     ExcelImportStepPerformer,
     DataframeDeleteStepPerformer,
